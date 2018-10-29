@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">My Playlist</string>
+
+    <string name="loading">Loading data...</string>
+
+    <!-- Playlist screen -->
+    <string name="playlist_screen_title">My Playlist</string>
+    <string name="action_settings">Settings</string>
+    <string name="play_content_description">Play the track</string>
+    <string name="unknown">Unknown</string>
+    <string name="incorrect_url">Can\'t play track. Incorrect url: %s</string>
+
+    <!-- New Track screen -->
+    <string name="new_track_screen">Add new track</string>
+    <string name="btn_add">Add</string>
+    <string name="hint_name">Track name</string>
+    <string name="hint_artist">Artist name(Optional)</string>
+    <string name="hint_url">Playback url</string>
+
+
+</resources>

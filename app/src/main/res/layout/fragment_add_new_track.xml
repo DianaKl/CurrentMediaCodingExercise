@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="track"
+            type="com.example.dklimovich.myplaylist.db.entity.TrackEntity" />
+
+        <variable
+            name="artist"
+            type="com.example.dklimovich.myplaylist.db.entity.ArtistEntity" />
+
+        <variable
+            name="callback"
+            type="com.example.dklimovich.myplaylist.ui.callbacks.NewTrackCallback" />
+    </data>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.AddNewTrackFragment"
+        tools:showIn="@layout/activity_add_new_track">
+
+        <EditText
+            android:id="@+id/edtTrackName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/double_margin"
+            android:layout_marginEnd="@dimen/double_margin"
+            android:hint="@string/hint_name"
+            android:inputType="text"
+            android:text="@={track.name}"
+            app:layout_constraintBottom_toTopOf="@+id/edtArtistName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.120000005"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <EditText
+            android:id="@+id/edtArtistName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/double_margin"
+            android:layout_marginEnd="@dimen/double_margin"
+            android:hint="@string/hint_artist"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/edtUrl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtTrackName"
+            android:text="@={artist.name}"/>
+
+        <EditText
+            android:id="@+id/edtUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/double_margin"
+            android:layout_marginEnd="@dimen/double_margin"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:hint="@string/hint_url"
+            android:inputType="textUri"
+            android:text="@={track.url}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtArtistName" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/double_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/double_margin"
+            android:onClick="@{() ->  callback.onAddButtonClicked(track, artist)}"
+            android:text="@string/btn_add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtUrl"
+            android:enabled="@{track.valid}"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

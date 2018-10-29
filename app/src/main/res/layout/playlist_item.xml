@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="track"
+            type="com.example.dklimovich.myplaylist.db.entity.TrackEntity" />
+
+        <variable
+            name="callback"
+            type="com.example.dklimovich.myplaylist.ui.callbacks.PlaylistItemCallback" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() ->  callback.onPlayButtonClicked(track)}"
+        android:minHeight="100dp"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardElevation="3dp"
+        card_view:cardUseCompatPadding="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/tvTrackName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:gravity="start"
+                android:text="@{track.name}"
+                android:textSize="@dimen/title_text"
+                app:layout_constraintBottom_toTopOf="@+id/tvArtistName"
+                app:layout_constraintEnd_toStartOf="@+id/ivPlay"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/tvArtistName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:gravity="start"
+                android:text="@{track.getArtistDisplayName(@string/unknown)}"
+                android:textSize="@dimen/default_text"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivPlay"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTrackName" />
+
+            <ImageView
+                android:id="@+id/ivPlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/double_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:clickable="false"
+                android:contentDescription="@string/play_content_description"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_play_circle_outline_black_24dp" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</layout>
